@@ -163,7 +163,6 @@ fn main() {
 	let mut done = false; // mut done: bool used to play till user enters q.
 	let mut test_struct: Statistics = Statistics{total_plays: 0.0, user_wins: 0.0, percentage_wins: 0.00, user_ties: 0.0, percentage_ties: 0.00, user_losses: 0.0, percentage_losses: 0.00, rocks: 0, papers: 0, scissors: 0};
 	while !done {
-	
 		println!("Enter a Choice: (r,p,s) or q to quit");
 	    let choice = get_valid_entry(); //
 		let mut user_choice: Choice = Choice::NoEntry;
