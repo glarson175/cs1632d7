@@ -1,0 +1,7 @@
+[package]
+name = "cs1632d7"
+version = "0.1.0"
+authors = ["glarson175 <gsl13@pitt.edu>"]
+
+[dependencies]
+rand = "0.3.14"
