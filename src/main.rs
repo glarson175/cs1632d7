@@ -46,12 +46,12 @@ fn get_valid_entry()-> String{
 
 //this will calculate the percentage wins, percentage ties, and percentage losses. then print out all the information
 fn print_stats(mut print_struct: Statistics){
-	if print_struct.total_plays == 0.0{
+	if print_struct.total_plays == 0.0 {
 		print_struct.percentage_wins = 0.0;
 		print_struct.percentage_ties = 0.0;
 		print_struct.percentage_losses = 0.0;
 	}
-	else{
+	else {
 		print_struct.percentage_wins = (print_struct.user_wins/print_struct.total_plays)*100.0;
 		print_struct.percentage_ties = (print_struct.user_ties/print_struct.total_plays)*100.0;
 		print_struct.percentage_losses = (print_struct.user_losses/print_struct.total_plays)*100.0;
@@ -66,19 +66,16 @@ fn print_stats(mut print_struct: Statistics){
 }	
 
 //creates a random number and depending on what number 1-3 it returns Choice::rock, paper, or scissors for the computer choice
-fn get_computer_choice() -> Choice{
+fn get_computer_choice() -> Choice {
 	let computer_choice_int = rand::thread_rng().gen_range(1,4);
 	let mut computer_choice: Choice = Choice::NoEntry;
-	if computer_choice_int == 1
-	{
+	if computer_choice_int == 1 {
 		computer_choice = Choice::Rock;
 	}
-	else if computer_choice_int == 2
-	{
+	else if computer_choice_int == 2 {
 		computer_choice = Choice::Paper;
 	}
-	else if computer_choice_int == 3
-	{
+	else if computer_choice_int == 3 {
 		computer_choice = Choice::Scissors;
 	}
 	return computer_choice;
@@ -86,7 +83,7 @@ fn get_computer_choice() -> Choice{
 
 //Takes in the user choice, the computer choice, and the borrowed statistic structure to add to wins, losses, and ties. 
 fn who_wins(user_val:Choice, computer_val:Choice, stat_to_change: &mut Statistics) {
-	match user_val{
+	match user_val {
 		Choice::Rock => {
 			match computer_val{
 				Choice::Rock => {
@@ -105,7 +102,7 @@ fn who_wins(user_val:Choice, computer_val:Choice, stat_to_change: &mut Statistic
 			}
 		},
 		Choice::Paper => {
-			match computer_val{
+			match computer_val {
 				Choice::Rock => {
 					stat_to_change.user_wins +=1.0; 
 					println!("You Win!");
@@ -122,7 +119,7 @@ fn who_wins(user_val:Choice, computer_val:Choice, stat_to_change: &mut Statistic
 			}
 		},
 		Choice::Scissors => {
-			match computer_val{
+			match computer_val {
 				Choice::Rock => {
 					stat_to_change.user_losses +=1.0;
 					println!("You Lose!");
@@ -142,22 +139,22 @@ fn who_wins(user_val:Choice, computer_val:Choice, stat_to_change: &mut Statistic
 	}
 }
 
-//borrows the stat structure to add to the rocks value
+//Borrows the Statistics Struct to add to the rocks value
 fn add_rocks(mut stat_to_change: &mut Statistics, value: i32) {
    stat_to_change.rocks += value;
 }
 
-//borrows the stat structure to add to the papers value
+//Borrows the Statistics Struct to add to the papers value
 fn add_paper(mut stat_to_change: &mut Statistics, value: i32) {
    stat_to_change.papers += value;
 }
 
-//borrows the stat structure to add to the scissors value
+//Borrows the Statistics Struct to add to the scissors value
 fn add_scissors(mut stat_to_change: &mut Statistics, value: i32) {
    stat_to_change.scissors += value;
 }
 
-//borrows the stat structure to change the total_plays value
+//Borrows the Statistics Struct to change the total_plays value
 fn change_total_plays(mut stat_to_change: &mut Statistics, value: f64) {
    stat_to_change.total_plays += value;
 }
@@ -168,33 +165,28 @@ fn main() {
 	while !done {
 	
 		println!("Enter a Choice: (r,p,s) or q to quit");
-		
 	    let choice = get_valid_entry(); //
 		let mut user_choice: Choice = Choice::NoEntry;
 		let computer_choice: Choice = get_computer_choice();
 		let choice = choice.trim();
-		if choice == "q"
-		{
+		if choice == "q" {
 			done = true;
 			change_total_plays(&mut test_struct, -1.0);
 			println!("");
 		}
-		else if choice == "r"
-		{
+		else if choice == "r" {
 			user_choice = Choice::Rock;
 			add_rocks(&mut test_struct, 1);
 			println!("Player Chose: {:?}", user_choice);
 			println!("Oponent Chose: {:?}", computer_choice);
 		}
-		else if choice == "p"
-		{
+		else if choice == "p" {
 			user_choice = Choice::Paper;
 			add_paper(&mut test_struct, 1);
 			println!("Player Chose: {:?}", user_choice);
 			println!("Oponent Chose: {:?}", computer_choice);
 		}
-		else if choice == "s"
-		{
+		else if choice == "s" {
 			user_choice = Choice::Scissors;
 			add_scissors(&mut test_struct, 1);
 			println!("Player Chose: {:?}", user_choice);
@@ -204,9 +196,7 @@ fn main() {
 			println!("That is not a valid input, please enter either r, p, s, or q");
 			change_total_plays(&mut test_struct, -1.0);
 		}
-		
 		change_total_plays(&mut test_struct, 1.0);
-		
 		who_wins(user_choice, computer_choice, &mut test_struct);
 	}
 	print_stats(test_struct);
