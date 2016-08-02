@@ -140,22 +140,22 @@ fn who_wins(user_val:Choice, computer_val:Choice, stat_to_change: &mut Statistic
 }
 
 //Borrows the Statistics Struct to add to the rocks value
-fn add_rocks(mut stat_to_change: &mut Statistics, value: i32) {
+fn add_rocks(stat_to_change: &mut Statistics, value: i32) {
    stat_to_change.rocks += value;
 }
 
 //Borrows the Statistics Struct to add to the papers value
-fn add_paper(mut stat_to_change: &mut Statistics, value: i32) {
+fn add_paper(stat_to_change: &mut Statistics, value: i32) {
    stat_to_change.papers += value;
 }
 
 //Borrows the Statistics Struct to add to the scissors value
-fn add_scissors(mut stat_to_change: &mut Statistics, value: i32) {
+fn add_scissors(stat_to_change: &mut Statistics, value: i32) {
    stat_to_change.scissors += value;
 }
 
 //Borrows the Statistics Struct to change the total_plays value
-fn change_total_plays(mut stat_to_change: &mut Statistics, value: f64) {
+fn change_total_plays(stat_to_change: &mut Statistics, value: f64) {
    stat_to_change.total_plays += value;
 }
 	
